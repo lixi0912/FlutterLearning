@@ -1,4 +1,12 @@
-def localProperties = new Properties()
+def gradleProperties = new Properties()
+def gradlePropertiesFile = rootProject.file('gradle.properties')
+if (gradlePropertiesFile.exists()) {
+    gradlePropertiesFile.withReader('UTF-8') { reader ->
+        gradleProperties.load(reader)
+    }
+}
+
+def localProperties = new Properties(gradleProperties)
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
     localPropertiesFile.withReader('UTF-8') { reader ->
