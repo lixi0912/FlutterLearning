@@ -18,21 +18,17 @@ public class MainActivity extends FlutterActivity implements XURLRouterHandler {
         super.onCreate(savedInstanceState);
         GeneratedPluginRegistrant.registerWith(this);
         XURLRouter.sharedInstance().setAppContext(getApplicationContext());
+        XURLRouter.sharedInstance().setNativeRouterHandler(this);
+
     }
 
     @Override
     public Class openUrlWithQueryAndParams(String url, HashMap query, HashMap params) {
         Uri tmpUri = Uri.parse(url);
-        if("ndemo".equals(tmpUri.getHost())){
+        if ("ndemo".equals(tmpUri.getHost())) {
             return XDemoActivity.class;
         }
         return null;
     }
 
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-
-
-    }
 }
